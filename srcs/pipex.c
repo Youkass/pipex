@@ -6,47 +6,35 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:36:20 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/05 14:46:10 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/07 16:57:28 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	main()
+int	main(int ac, char **av, char **envp)
 {
-	int	id;
-	int	id_2;
-	int	i;
+	int		id;
+	char	**execarg;
 
+	if (ac < 2)
+		return (0);
+	execarg = malloc(sizeof(char *) * ac + 1);
+	if (!execarg)
+		exit(EXIT_FAILURE);
+	ft_copy(av, execarg, ac);
 	id = fork();
-	if (id != 0)
+	if (id == 0)
 	{
-		i = 0;
-		printf("id : %d\n", id);
-		while (i < 5)
-			printf("%d ", i++);
-		printf("\n");
+		printf("id Child : %d\n", id);
+		if (access(ft_cmd(execarg[0]), F_OK) == 0)
+			execve(ft_cmd(execarg[0]), execarg, envp);
+		else
+			printf("Commande inconnue\n");
 	}
 	else
 	{
-		wait(NULL);
-		id_2 = fork();
-		printf("id : %d\n", id);
-		if (id_2 != 0)
-		{
-			i = 5;
-			while (i < 10)
-				printf("%d ", i++);
-			printf("\n");
-		}
-		else
-		{
-			wait(NULL);
-			printf("id : %d\n", id_2);
-			i = 10;
-			while (i < 15)
-				printf("%d ", i++);
-			printf("\n");
-		}
+		waitpid(0, NULL, 0);
+		printf("id Parent : %d\n", id);
 	}
 }

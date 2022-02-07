@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:34:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/05 14:46:05 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/07 16:57:24 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <fcntl.h>
+# define _BIN_ "/bin/"
 
 typedef struct	s_node
 {
@@ -25,4 +27,32 @@ typedef struct	s_node
 	struct s_node	*next;
 } t_node;
 
+/*================================================*/
+/* Function for free, ft_free.c		 			  */
+/*file : ft_free.c	 							  */
+
+void	*ft_free(char **output, int p);
+void	ft_lstclear(t_node **lst);
+int		ft_tab_size(**tab);
+
+/*================================================*/
+/* Get the different possibles path				  */
+/*file : utils_path.c							  */
+
+char	*ft_cmd(char *path, char *cmd);
+int		ft_cmp_path(char *s1, char *s2);
+int		get_path_pos(char **envp);
+char	**get_path_lst(char **envp);
+char	*check_path(char **path_lst, char *cmd);
+
+/*================================================*/
+/* Gestion des arguments et chaines de caracteres */
+/*file : utils_str.c							  */
+
+void	ft_copy(char **av, char **execarg, int ac);
+int		ft_strlen(char *s);
+char	*ft_strdup(char *s);
+char	*ft_strjoin_pimp(char *s1, char *s2);
+char	**ft_split(char const *s, char c);
+/*================================================*/
 #endif
