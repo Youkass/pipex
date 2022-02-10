@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:34:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/07 16:57:24 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/09 13:37:12 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <fcntl.h>
-# define _BIN_ "/bin/"
 
 typedef struct	s_node
 {
@@ -33,7 +32,7 @@ typedef struct	s_node
 
 void	*ft_free(char **output, int p);
 void	ft_lstclear(t_node **lst);
-int		ft_tab_size(**tab);
+int		ft_tab_size(char **tab);
 
 /*================================================*/
 /* Get the different possibles path				  */

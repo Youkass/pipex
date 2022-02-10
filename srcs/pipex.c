@@ -6,18 +6,27 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:36:20 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/07 16:57:28 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:14:26 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+
+static void	ft_print_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		printf("%s\n", tab[i++]);
+}
 
 int	main(int ac, char **av, char **envp)
 {
 	int		id;
 	char	**execarg;
 
-	if (ac < 2)
+	if (ac < 1)
 		return (0);
 	execarg = malloc(sizeof(char *) * ac + 1);
 	if (!execarg)

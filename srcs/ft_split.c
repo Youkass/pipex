@@ -6,11 +6,11 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 09:49:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/07 16:36:52 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/09 13:37:46 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/pipex.h"
 
 static int	ft_count(char const *str, char c)
 {

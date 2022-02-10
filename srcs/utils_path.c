@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:13:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/07 16:57:27 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:09:00 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_cmp_path(char *s1, char *s2)
 	int	i;
 
 	i = 0;
-	while (s1[i] == s2[i] && s1[i] && s2[i] && i < 4)
+	while (s1[i] == s2[i] && s1[i] && s2[i] && i < 3)
 		++i;
 	return (s1[i] - s2[i]);
 }
@@ -37,7 +37,7 @@ int	get_path_pos(char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		if (ft_cmp_path("PATH", envp[i]))
+		if (ft_cmp_path("PATH", envp[i]) == 0)
 			break ;
 		++i;
 	}

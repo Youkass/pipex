@@ -6,13 +6,13 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/07 16:57:24 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/09 13:41:28 by yuro4ka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	ft_tab_size(**tab)
+int	ft_tab_size(char **tab)
 {
 	int	i;
 	
