@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:13:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/10 20:10:18 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/10 22:01:10 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**get_path_lst(char **envp)
 {
 	char	**output;
 
-	output = ft_split(envp[get_path_pos(envp)] + 5, ':');
+	output = ft_split_path(envp[get_path_pos(envp)] + 5, ':');
 	if (!output)
 		return (NULL);
 	else

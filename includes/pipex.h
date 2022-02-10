@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:34:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/10 20:17:41 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/10 22:51:40 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,25 @@ typedef struct	s_node
 	struct s_node	*next;
 } t_node;
 /*================================================*/
+/* Fill the execarg tab				   			  */
+/*file : utils_exec.c		 					  */
+void	ft_execution(char ***execarg, char **av, int ac);
+
+/*================================================*/
+/* Just read the proto name			   			  */
+/*file : ft_split_path.c	 					  */
+char	**ft_split_path(char const *s, char c);
+
+/*================================================*/
 /* Function for chained list, ft_lst.c			  */
 /*file : ft_lst.c	 							  */
+t_node	*ft_lstnew(int value);
+void	ft_lstadd_back(t_node **alst, t_node *new);
 
 /*================================================*/
 /* Function for free, ft_free.c		 			  */
-/*file : ft_free.c	 							  */
-
+/*file : ft_free.c	utils_exec.c 				  */
+void	ft_free_all(char ***execarg);
 void	*ft_free(char **output, int p);
 void	ft_lstclear(t_node **lst);
 int		ft_tab_size(char **tab);
@@ -51,7 +63,7 @@ char	*check_path(char **path_lst, char *cmd);
 /* Gestion des arguments et chaines de caracteres */
 /*file : utils_str.c							  */
 
-void	ft_copy(char **av, char **execarg, int ac);
+void	ft_copy(char **av, char **execarg);
 int		ft_strlen(char *s);
 char	*ft_strdup(char *s);
 char	*ft_strjoin_pimp(char *s1, char *s2);

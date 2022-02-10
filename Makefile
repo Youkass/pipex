@@ -6,7 +6,7 @@
 #    By: yobougre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 13:32:09 by yobougre          #+#    #+#              #
-#    Updated: 2022/02/10 20:20:49 by yobougre         ###   ########.fr        #
+#    Updated: 2022/02/10 22:46:33 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,15 @@ SRCS=	srcs/pipex.c\
 		srcs/utils_path.c\
 		srcs/ft_free.c\
 		srcs/ft_lst.c\
-		srcs/ft_split.c
+		srcs/ft_split_path.c\
+		srcs/ft_split.c\
+		srcs/utils_exec.c
 
 INCL=	includes/pipex.h
 
 NAME=	pipex
 
-CFLAGS= -Wall -Werror -Wextra
-
+CFLAGS= -Wall -Werror -Wextra 
 CC=	gcc
 
 OBJS=	$(SRCS:.c=.o)

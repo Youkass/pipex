@@ -6,26 +6,11 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:34:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/07 15:36:38 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/10 22:25:24 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-
-void	ft_copy(char **av, char **execarg, int ac)
-{
-	int		i;
-	int		j;
-
-	i = 1;
-	j = 0;
-	while (i < ac)
-	{
-		execarg[j] = ft_strdup(av[i]);
-		++j;
-		++i;
-	}
-}
 
 int	ft_strlen(char *s)
 {
