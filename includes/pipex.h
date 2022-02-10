@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:34:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/10 22:51:40 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/11 00:12:54 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ typedef struct	s_node
 	int				id;
 	struct s_node	*next;
 } t_node;
+void	ft_print_tab(char **tab);
 /*================================================*/
 /* Fill the execarg tab				   			  */
 /*file : utils_exec.c		 					  */
-void	ft_execution(char ***execarg, char **av, int ac);
+char	***ft_execution(char ***execarg, char **av, int ac);
 
 /*================================================*/
 /* Just read the proto name			   			  */

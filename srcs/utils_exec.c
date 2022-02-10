@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/10 22:51:32 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/11 00:12:13 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_free_all(char ***execarg)
 	free(execarg);
 }
 
-void	ft_execution(char ***execarg, char **av, int ac)
+char	***ft_execution(char ***execarg, char **av, int ac)
 {
 	int		i;
 	int		j;
@@ -42,7 +42,10 @@ void	ft_execution(char ***execarg, char **av, int ac)
 	{
 		execarg[i] = ft_split(av[j], ' ');
 		if (!execarg[i])
-			return (ft_free_all(execarg));
+			return (ft_free_all(execarg), NULL);
+		++i;
+		++j;
 	}
 	execarg[i] = NULL;
+	return (execarg);
 }
