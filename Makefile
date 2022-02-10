@@ -6,7 +6,7 @@
 #    By: yobougre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 13:32:09 by yobougre          #+#    #+#              #
-#    Updated: 2022/02/09 13:41:02 by yuro4ka          ###   ########.fr        #
+#    Updated: 2022/02/10 20:20:49 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ SRCS=	srcs/pipex.c\
 		srcs/utils_str.c\
 		srcs/utils_path.c\
 		srcs/ft_free.c\
+		srcs/ft_lst.c\
 		srcs/ft_split.c
 
 INCL=	includes/pipex.h
@@ -22,7 +23,7 @@ NAME=	pipex
 
 CFLAGS= -Wall -Werror -Wextra
 
-CC=	gcc-11
+CC=	gcc
 
 OBJS=	$(SRCS:.c=.o)
 

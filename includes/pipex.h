@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:34:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/09 13:37:12 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/02/10 20:17:41 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ typedef struct	s_node
 	int				id;
 	struct s_node	*next;
 } t_node;
+/*================================================*/
+/* Function for chained list, ft_lst.c			  */
+/*file : ft_lst.c	 							  */
 
 /*================================================*/
 /* Function for free, ft_free.c		 			  */

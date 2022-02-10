@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 09:49:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/09 13:37:46 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/02/10 20:06:33 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*ft_fill(char const *s, int size, int *index)
 	char	*output;
 	int		i;
 
-	output = malloc(sizeof(char) * (size + 1));
+	output = malloc(sizeof(char) * (size + 2));
 	if (!output)
 		return (NULL);
 	i = 0;
@@ -48,7 +48,8 @@ static char	*ft_fill(char const *s, int size, int *index)
 		i++;
 		*index += 1;
 	}
-	output[i] = '\0';
+	output[i] = '/';
+	output[i + 1] = 0;
 	return (output);
 }
 
