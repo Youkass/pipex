@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:36:20 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/11 00:14:12 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/11 04:59:32 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,20 @@ char	**ft_fill_cmd(char **cmd, char ***av, char **envp, int ac)
 	return (cmd);
 }
 
+static int	ft_check_file(int filein, int fileout)
+{
+	if (filein == -1 || fileout == -1)
+		return (0);
+	else
+		return (1);
+}
+
 int	main(int ac, char **av, char **envp)
 {
 	char	***execarg;
 	char	**cmd;
+	int		filein;
+	int		fileout;
 
 	execarg = NULL;
 	if (ac < 5)
@@ -56,4 +66,13 @@ int	main(int ac, char **av, char **envp)
 	cmd = ft_fill_cmd(cmd, execarg, envp, ac);
 	if (!cmd)
 		return (ft_free_all(execarg), 0);
+	filein = ft_filein(av[1]);
+	fileout = ft_fileout(av[ac - 1]);
+	if (!ft_check_file(filein, fileout))
+		return (ft_free_all(execarg), 0);
+	dup2(filein, STDIN_FILENO);
+	if (!fork_pipe(ac - 3, cmd, execarg, envp))
+		return (ft_free_all(execarg), 0);
+	dup2(fileout, STDOUT_FILENO);
+	execve(cmd[ac - 4], execarg[ac - 4], envp);
 }

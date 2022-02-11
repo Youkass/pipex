@@ -6,7 +6,7 @@
 #    By: yobougre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 13:32:09 by yobougre          #+#    #+#              #
-#    Updated: 2022/02/11 00:13:20 by yobougre         ###   ########.fr        #
+#    Updated: 2022/02/11 01:30:10 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS=	srcs/pipex.c\
 		srcs/ft_lst.c\
 		srcs/ft_split_path.c\
 		srcs/ft_split.c\
+		srcs/utils_pipe.c\
 		srcs/utils_exec.c
 
 INCL=	includes/pipex.h
