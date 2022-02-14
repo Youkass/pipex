@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:36:20 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/11 05:32:45 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/14 16:47:47 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,32 @@ int	main(int ac, char **av, char **envp)
 	char	**cmd;
 	int		filein;
 	int		fileout;
+	int		i;
 
 	execarg = NULL;
+	cmd = NULL;
 	if (ac < 5)
 		return (0);
 	if (access(av[1], F_OK) != 0)
 		return (0);
-	execarg = ft_execution(execarg, av, ac);
+	execarg = ft_execution(execarg, av, ac, cmd);
 	if (!execarg)
 		return (0);
 	cmd = malloc(sizeof(char *) * ac - 2);
 	if (!cmd)
-		return (ft_free_all(execarg), 0);
+		return (ft_free_all(execarg, cmd), 0);
 	cmd = ft_fill_cmd(cmd, execarg, envp, ac);
 	if (!cmd)
-		return (ft_free_all(execarg), 0);
+		return (ft_free_all(execarg, cmd), 0);
 	filein = ft_filein(av[1]);
 	fileout = ft_fileout(av[ac - 1]);
 	if (!ft_check_file(filein, fileout))
-		return (ft_free_all(execarg), 0);
+		return (ft_free_all(execarg, cmd), 0);
 	dup2(filein, STDIN_FILENO);
-	if (!fork_pipe(ac - 3, cmd, execarg, envp))
-		return (ft_free_all(execarg), 0);
+	i = fork_pipe(ac - 3, cmd, execarg, envp);
+	if (!i)
+		return (ft_free_all(execarg, cmd), 0);
 	dup2(fileout, STDOUT_FILENO);
-	execve(cmd[ac - 4], execarg[ac - 4], envp);
+	execve(cmd[i], execarg[i], envp);
+	return (ft_free_all(execarg, cmd), 0);
 }

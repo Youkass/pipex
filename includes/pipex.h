@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:34:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/11 05:32:50 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/14 16:47:34 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		ft_fileout(char *file);
 /*================================================*/
 /* Fill the execarg tab				   			  */
 /*file : utils_exec.c		 					  */
-char	***ft_execution(char ***execarg, char **av, int ac);
+char	***ft_execution(char ***execarg, char **av, int ac, char **cmd);
 
 /*================================================*/
 /* Just read the proto name			   			  */
@@ -51,8 +51,8 @@ void	ft_lstadd_back(t_node **alst, t_node *new);
 
 /*================================================*/
 /* Function for free, ft_free.c		 			  */
-/*file : ft_free.c	utils_exec.c 				  */
-void	ft_free_all(char ***execarg);
+/*file : ft_free.c				 				  */
+void	ft_free_all(char ***execarg, char **cmd);
 void	*ft_free(char **output, int p);
 void	ft_lstclear(t_node **lst);
 int		ft_tab_size(char **tab);

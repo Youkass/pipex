@@ -6,29 +6,13 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/11 00:12:13 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/14 15:48:13 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void	ft_free_all(char ***execarg)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (execarg[i])
-	{
-		j = 0;
-		while (execarg[i][j])
-			free(execarg[i][j++]);
-		++i;
-	}
-	free(execarg);
-}
-
-char	***ft_execution(char ***execarg, char **av, int ac)
+char	***ft_execution(char ***execarg, char **av, int ac, char **cmd)
 {
 	int		i;
 	int		j;
@@ -42,7 +26,7 @@ char	***ft_execution(char ***execarg, char **av, int ac)
 	{
 		execarg[i] = ft_split(av[j], ' ');
 		if (!execarg[i])
-			return (ft_free_all(execarg), NULL);
+			return (ft_free_all(execarg, cmd), NULL);
 		++i;
 		++j;
 	}

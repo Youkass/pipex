@@ -6,11 +6,30 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/09 13:41:28 by yuro4ka          ###   ########.fr       */
+/*   Updated: 2022/02/14 15:51:46 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+
+void	ft_free_all(char ***execarg, char **cmd)
+{
+	int	i;
+
+	i = 0;
+	if (execarg)
+	{
+		while (execarg[i])
+		{
+			ft_free(execarg[i], ft_tab_size(execarg[i]));
+			++i;
+		}
+		free(execarg);
+	}
+	if (cmd)
+		ft_free(cmd, ft_tab_size(cmd));
+}
+
 
 int	ft_tab_size(char **tab)
 {
@@ -26,10 +45,12 @@ void	*ft_free(char **output, int p)
 {
 	while (p)
 	{
-		free(output[p]);
+		if (output[p])
+			free(output[p]);
 		p--;
 	}
-	free(output);
+	if (output)
+		free(output);
 	return (NULL);
 }
 

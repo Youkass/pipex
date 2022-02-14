@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/11 05:32:48 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/14 14:04:58 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ int	fork_pipe(int nb, char **cmd, char ***execarg, char **envp)
 		}
 		++i;
 	}
-	return (1);
+	return (i);
 }
