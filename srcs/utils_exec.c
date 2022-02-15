@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/14 15:48:13 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:18:56 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	***ft_execution(char ***execarg, char **av, int ac, char **cmd)
 	j = 2;
 	execarg = malloc(sizeof(char **) * ac + 1);
 	if (!execarg)
-		exit(EXIT_FAILURE);
+		return (NULL);
 	while (j < ac - 1)
 	{
 		execarg[i] = ft_split(av[j], ' ');

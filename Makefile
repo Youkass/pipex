@@ -6,7 +6,7 @@
 #    By: yobougre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 13:32:09 by yobougre          #+#    #+#              #
-#    Updated: 2022/02/15 14:01:54 by yobougre         ###   ########.fr        #
+#    Updated: 2022/02/15 16:55:57 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ INCL=	includes/pipex.h
 
 NAME=	pipex
 
-CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS= -Wall -Werror -Wextra 
 
 CC=	gcc
 
