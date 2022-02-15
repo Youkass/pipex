@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:13:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/14 16:47:32 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/15 13:24:10 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ char	*check_path(char **path_lst, char *cmd)
 		++i;
 	}
 	ft_free(path_lst, ft_tab_size(path_lst));
+	free(cmd);
 	return (NULL);
 }

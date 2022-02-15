@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/14 15:51:46 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/15 14:04:30 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,17 @@ int	ft_tab_size(char **tab)
 
 void	*ft_free(char **output, int p)
 {
-	while (p)
-	{
-		if (output[p])
-			free(output[p]);
-		p--;
-	}
 	if (output)
-		free(output);
+	{
+		while (p)
+		{
+			if (output[p])
+				free(output[p]);
+			p--;
+		}
+		if (output)
+			free(output);
+	}
 	return (NULL);
 }
 
