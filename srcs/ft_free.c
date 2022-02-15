@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/15 14:04:30 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/15 14:13:14 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ void	ft_free_all(char ***execarg, char **cmd)
 	if (execarg)
 	{
 		while (execarg[i])
+			i++;
+		ft_print_tab(execarg[i - 1]);
+		while (i)
 		{
 			ft_free(execarg[i], ft_tab_size(execarg[i]));
-			++i;
+			--i;
 		}
 		free(execarg);
 	}
