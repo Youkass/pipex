@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/07 16:13:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/17 15:00:03 by yobougre         ###   ########.fr       */
+/*   Created: 2022/02/17 16:16:42 by yobougre          #+#    #+#             */
+/*   Updated: 2022/02/17 16:35:28 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	get_path_pos(char **envp)
 	while (envp[i])
 	{
 		if (ft_cmp_path("PATH", envp[i]) == 0)
-			break ;
+			return (i);
 		++i;
 	}
-	return (i);
+	return (-1);
 }
 
 char	**get_path_lst(char **envp)

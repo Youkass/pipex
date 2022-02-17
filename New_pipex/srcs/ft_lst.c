@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 20:18:05 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/17 15:00:05 by yobougre         ###   ########.fr       */
+/*   Created: 2022/02/17 15:05:34 by yobougre          #+#    #+#             */
+/*   Updated: 2022/02/17 18:21:56 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ void	ft_lstclear(t_node **lst)
 	tmp_00 = *lst;
 	while (tmp_00)
 	{
+		if (tmp_00->cmd_path)
+			free(tmp_00->cmd_path);
+		if (tmp_00->args)
+			ft_free(tmp_00->args, ft_tab_size(tmp_00->args));
 		tmp_01 = tmp_00->next;
 		free(tmp_00);
 		tmp_00 = tmp_01;
@@ -62,8 +66,15 @@ void	ft_lstclear(t_node **lst)
 void	ft_create_new_lst(t_node **start, int nb_cmd)
 {
 	int		i;
+	t_node	*tmp;
 
 	i = 0;
+	tmp = (*start);
 	while (i < nb_cmd)
-		ft_lstadd_back(start, ft_lstnew(i++));
+	{
+		tmp = ft_lstnew(i);
+		tmp = tmp->next;
+		++i;
+	}
+	tmp = NULL;
 }

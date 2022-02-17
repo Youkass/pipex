@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_exec.c                                       :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/17 14:54:31 by yobougre         ###   ########.fr       */
+/*   Created: 2022/02/17 16:25:58 by yobougre          #+#    #+#             */
+/*   Updated: 2022/02/17 16:27:04 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void	ft_execution(t_node **start, char **av, int ac)
+int	ft_tab_size(char **tab)
 {
-	int		j;
-	t_node	*tmp;
+	int	i;
+	
+	i = 0;
+	while (tab[i])
+		++i;
+	return (i);
+}
 
-	j = 2;
-	tmp = (*start);
-	while (j < ac - 1)
+void	*ft_free(char **output, int p)
+{
+	if (output)
 	{
-		tmp->args = ft_split(av[j], ' ');
-		if (!tmp->args)
-			return (ft_lstclear(start));
-		if (tmp->next == NULL)
-			tmp->args = NULL;
-		tmp = tmp->next;
-		++j;
+		while (p)
+		{
+			if (output[p])
+				free(output[p]);
+			p--;
+		}
+		if (output)
+			free(output);
 	}
+	return (NULL);
 }

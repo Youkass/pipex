@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_exec.c                                       :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/17 14:54:31 by yobougre         ###   ########.fr       */
+/*   Created: 2022/02/17 15:01:00 by yobougre          #+#    #+#             */
+/*   Updated: 2022/02/17 18:21:55 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-
-void	ft_execution(t_node **start, char **av, int ac)
+/*, char **envp*/
+int	main(int ac, char **av)
 {
-	int		j;
+	t_node	*lst;
 	t_node	*tmp;
 
-	j = 2;
-	tmp = (*start);
-	while (j < ac - 1)
+	lst = ft_lstnew(0);
+	if (ac < 5)
+		return (0);
+	ft_create_new_lst(&lst, ac - 3);
+	if (!lst)
+		exit(EXIT_FAILURE);
+	ft_get_args(&lst, av);
+	tmp = lst;
+	while (tmp != NULL)
 	{
-		tmp->args = ft_split(av[j], ' ');
-		if (!tmp->args)
-			return (ft_lstclear(start));
-		if (tmp->next == NULL)
-			tmp->args = NULL;
+		printf("node numero : %d\n", tmp->index);
+		ft_print_tab(tmp->args);
 		tmp = tmp->next;
-		++j;
 	}
 }

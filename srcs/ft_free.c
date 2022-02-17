@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/15 16:49:27 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/17 14:51:46 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,4 @@ void	*ft_free(char **output, int p)
 			free(output);
 	}
 	return (NULL);
-}
-
-void	ft_lstclear(t_node **lst)
-{
-	t_node	*tmp_00;
-	t_node	*tmp_01;
-
-	if (!lst)
-		return ;
-	tmp_00 = *lst;
-	while (tmp_00)
-	{
-		tmp_01 = tmp_00->next;
-		free(tmp_00);
-		tmp_00 = tmp_01;
-	}
-	*lst = NULL;
 }

@@ -5,21 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yobougre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/02/01 13:32:09 by yobougre          #+#    #+#              #
-#    Updated: 2022/02/17 15:00:05 by yobougre         ###   ########.fr        #
+#    Created: 2022/02/17 15:01:06 by yobougre          #+#    #+#              #
+#    Updated: 2022/02/17 18:21:58 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS=	srcs/pipex.c\
 		srcs/utils_str.c\
 		srcs/utils_path.c\
-		srcs/utils_path_2.c\
-		srcs/ft_free.c\
+		srcs/utils_parse.c\
 		srcs/ft_lst.c\
+		srcs/ft_free.c\
 		srcs/ft_split_path.c\
 		srcs/ft_split.c\
-		srcs/utils_pipe.c\
-		srcs/utils_exec.c
 
 INCL=	includes/pipex.h
 
