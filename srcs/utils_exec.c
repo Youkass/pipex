@@ -6,27 +6,22 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/17 14:54:31 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:25:33 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void	ft_execution(t_node **start, char **av, int ac)
+int	ft_execute(int index, char **av, char **envp)
 {
-	int		j;
-	t_node	*tmp;
+	char	**cmd;
 
-	j = 2;
-	tmp = (*start);
-	while (j < ac - 1)
-	{
-		tmp->args = ft_split(av[j], ' ');
-		if (!tmp->args)
-			return (ft_lstclear(start));
-		if (tmp->next == NULL)
-			tmp->args = NULL;
-		tmp = tmp->next;
-		++j;
-	}
+	cmd = ft_split(av[index], ' ');
+	printf("cmd : \n");
+	ft_print_tab(cmd);
+	if (!cmd)
+		return (-1);
+	if (execve(check_path(get_path_lst(envp), cmd[0]), cmd, envp) == -1)
+		return (ft_free(cmd, ft_tab_size(cmd)),-1);
+	return (1);
 }

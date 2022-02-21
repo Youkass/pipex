@@ -6,7 +6,7 @@
 #    By: yobougre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 13:32:09 by yobougre          #+#    #+#              #
-#    Updated: 2022/02/17 15:00:05 by yobougre         ###   ########.fr        #
+#    Updated: 2022/02/21 16:25:34 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INCL=	includes/pipex.h
 
 NAME=	pipex
 
-CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS= -Wall -Werror -Wextra -g3
 
 CC=	gcc
 
@@ -45,3 +45,7 @@ fclean:
 re:	fclean all
 
 .PHONY: fclean clean re all 
+
+#--track -fds=is
+#--trace -children=is
+#-q

@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:34:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/17 15:00:06 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:25:34 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ void	ft_print_tab(char **tab);
 /*================================================*/
 /* Functions using pipe()			   			  */
 /*file : utils_pipe.c		 					  */
-int		fork_pipe(int nb, char **cmd, char ***execarg, char **envp);
+int		fork_pipe(int ac, char **av, char **envp);
 int		ft_filein(char *file);
 int		ft_fileout(char *file);
 
 /*================================================*/
 /* Fill the execarg tab				   			  */
 /*file : utils_exec.c		 					  */
-void	ft_execution(t_node **start, char **av, int ac);
+int		ft_execute(int index, char **av, char **envp);
 
 /*================================================*/
 /* Just read the proto name			   			  */
