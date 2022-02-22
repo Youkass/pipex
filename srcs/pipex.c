@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:36:20 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/22 14:41:50 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:24:52 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int ac, char **av, char **envp)
 	if (!ft_check_file(filein, fileout))
 		exit(EXIT_FAILURE);
 	dup2(filein, STDIN_FILENO);
+	close(filein);
 	i = 2;
 	while (i < ac - 2)
 	{
@@ -51,5 +52,6 @@ int	main(int ac, char **av, char **envp)
 			exit(EXIT_FAILURE);
 	}
 	dup2(fileout, STDOUT_FILENO);
+	close(fileout);
 	ft_execute(av[ac - 2], envp);
 }
