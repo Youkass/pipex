@@ -6,7 +6,7 @@
 #    By: yobougre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 13:32:09 by yobougre          #+#    #+#              #
-#    Updated: 2022/02/21 16:25:34 by yobougre         ###   ########.fr        #
+#    Updated: 2022/02/22 14:32:28 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ SRCS=	srcs/pipex.c\
 		srcs/utils_path.c\
 		srcs/utils_path_2.c\
 		srcs/ft_free.c\
-		srcs/ft_lst.c\
 		srcs/ft_split_path.c\
 		srcs/ft_split.c\
 		srcs/utils_pipe.c\

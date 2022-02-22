@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:36:20 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/21 16:25:35 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:41:50 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	ft_print_tab(char **tab)
 
 	i = 0;
 	if (!tab)
-	{
-		printf("y'a R c'est null connard\n");
 		return ;
-	}
 	while (tab[i])
 		printf("%s\n", tab[i++]);
 }
@@ -36,8 +33,9 @@ static int	ft_check_file(int filein, int fileout)
 
 int	main(int ac, char **av, char **envp)
 {
-	int		filein;
-	int		fileout;
+	int	filein;
+	int	fileout;
+	int	i;
 
 	if (ac < 5)
 		return (0);
@@ -46,11 +44,12 @@ int	main(int ac, char **av, char **envp)
 	if (!ft_check_file(filein, fileout))
 		exit(EXIT_FAILURE);
 	dup2(filein, STDIN_FILENO);
+	i = 2;
+	while (i < ac - 2)
+	{
+		if (fork_pipe(av[i++], envp) == -1)
+			exit(EXIT_FAILURE);
+	}
 	dup2(fileout, STDOUT_FILENO);
-	if (!fork_pipe(ac, av, envp))
-		exit(EXIT_FAILURE);
-	close(filein);
-	close(fileout);
-	if (ft_execute(ac - 2, av, envp) == -1)
-		exit(EXIT_FAILURE);
+	ft_execute(av[ac - 2], envp);
 }

@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:34:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/21 16:25:34 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:10:44 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,40 +19,23 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 
-typedef struct	s_node
-{
-	struct s_node	*next;
-	int				index;
-	char			*cmd_path;
-	char			**args;
-} t_node;
-
-void	ft_lst(t_node **start, char **av, int ac, char **envp);
 void	ft_print_tab(char **tab);
 /*================================================*/
 /* Functions using pipe()			   			  */
 /*file : utils_pipe.c		 					  */
-int		fork_pipe(int ac, char **av, char **envp);
+int		fork_pipe(char *av, char **envp);
 int		ft_filein(char *file);
 int		ft_fileout(char *file);
 
 /*================================================*/
 /* Fill the execarg tab				   			  */
 /*file : utils_exec.c		 					  */
-int		ft_execute(int index, char **av, char **envp);
+int		ft_execute(char *av, char **envp);
 
 /*================================================*/
 /* Just read the proto name			   			  */
 /*file : ft_split_path.c	 					  */
 char	**ft_split_path(char const *s, char c);
-
-/*================================================*/
-/* Function for chained list, ft_lst.c			  */
-/*file : ft_lst.c	 							  */
-t_node	*ft_lstnew(int value);
-void	ft_lstadd_back(t_node **alst, t_node *new);
-void	ft_create_new_lst(t_node **start, int nb_cmd);
-void	ft_lstclear(t_node **lst);
 
 /*================================================*/
 /* Function for free, ft_free.c		 			  */

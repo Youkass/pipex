@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:13:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/17 15:00:03 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:24:11 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ char	*check_path(char **path_lst, char *cmd)
 	while (path_lst[i])
 	{
 		output = ft_strjoin_pimp(path_lst[i], cmd);
-		if (access(output, X_OK) == 0)
-			return (ft_free(path_lst, ft_tab_size(path_lst)), free(cmd), output);
+		if (access(output, R_OK) == 0)
+			return (ft_free(path_lst, ft_tab_size(path_lst)), output);
 		free(output);
 		++i;
 	}

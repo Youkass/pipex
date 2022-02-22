@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/21 16:25:32 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:42:01 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,26 @@ int	ft_filein(char *file)
 		return (fd);
 }
 
-int	fork_pipe(int ac, char **av, char **envp)
+int	fork_pipe(char *av, char **envp)
 {
 	int		fd[2];
-	int		pid;
-	int		i;
+	pid_t	pid;
 
-	i = 2;
-	while (i < ac - 1)
+	if (pipe(fd) == -1)
+		return (-1);
+	pid = fork();
+	if (pid < 0)
+		return (-1);
+	if (pid == 0)
 	{
-		if (pipe(fd) == -1)
-			return (-1);
-		pid = fork();
-		if (pid < 0)
-			return (-1);
-		if (pid == 0)
-		{
-			close(fd[0]);
-			dup2(fd[1], STDOUT_FILENO);
-			if (ft_execute(i, av, envp) == -1)
-				return (-1);
-		}
-		else
-		{
-			close(fd[1]);
-			dup2(fd[0], STDIN_FILENO);
-			if (waitpid(pid, NULL, 0) == -1)
-				return (-1);
-		}
-		++i;
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		ft_execute(av, envp);
 	}
-	return (i);
+	else
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+	}
+	return (1);
 }
