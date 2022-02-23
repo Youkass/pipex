@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/22 17:24:48 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:20:06 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,26 @@ int	ft_filein(char *file)
 		return (fd);
 }
 
-int	fork_pipe(char *av, char **envp)
+int	fork_pipe(t_node *data, char **envp)
 {
-	int		fd[2];
-	pid_t	pid;
-
-	if (pipe(fd) == -1)
+	if (pipe(data->fd) == -1)
 		return (-1);
-	pid = fork();
-	if (pid < 0)
+	data->pid = fork();
+	if (data->pid < 0)
 		return (-1);
-	if (pid == 0)
+	if (data->pid == 0)
 	{
-		close(fd[0]);
-		dup2(fd[1], STDOUT_FILENO);
-		close(fd[1]);
-		ft_execute(av, envp);
+		close(data->fd[0]);
+		dup2(data->fd[1], STDOUT_FILENO);
+		if (data->prev)
+			close(data->prev->fd[1]);
+		ft_execute(data->cmd_args, envp);
 	}
 	else
 	{
-		close(fd[1]);
-		dup2(fd[0], STDIN_FILENO);
-		close(fd[0]);
-		waitpid(pid, NULL, 0);
+		close(data->fd[1]);
+		dup2(data->fd[0], STDIN_FILENO);
+		close(data->fd[0]);
 	}
-	close(fd[0]);
-	close(fd[1]);
-	return (1);
+	return (data->pid);
 }

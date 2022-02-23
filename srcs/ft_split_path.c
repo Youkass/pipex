@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 09:49:26 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/10 21:57:03 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/23 14:06:36 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static char	**ft_dfill(char **output, char const *s, char c)
 				j++;
 			output[p] = ft_fill(s, j, &i);
 			if (!output[p])
-				return (ft_free(output, p));
+				return (ft_free(output), NULL);
 			p++;
 		}
 		else

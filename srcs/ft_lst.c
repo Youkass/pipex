@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 20:18:05 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/21 14:32:02 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/23 16:30:34 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,11 @@ t_node	*ft_lstnew(int value)
 	if (!sortie)
 		return (NULL);
 	sortie->index = value;
-	sortie->args = NULL;
-	sortie->cmd_path = NULL;
+	sortie->path = NULL;
+	sortie->prev = NULL;
+	sortie->cmd_args = NULL;
 	sortie->next = NULL;
 	return (sortie);
-}
-
-void	ft_lstadd_back(t_node **alst, t_node *new)
-{
-	t_node	*tmp;
-
-	tmp = *alst;
-	if (!(*alst))
-	{
-		*alst = new;
-		return ;
-	}
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
-	new->next = NULL;
 }
 
 void	ft_lstclear(t_node **lst)
@@ -75,6 +60,7 @@ void	ft_create_new_lst(t_node **start, int nb_cmd)
 		tmp->next = ft_lstnew(i++);
 		if (!tmp->next)
 			return (ft_lstclear(start));
+		tmp->next->prev = tmp;
 		tmp = tmp->next;
 	}
 }
