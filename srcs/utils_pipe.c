@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/24 12:57:18 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/25 18:48:53 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,19 @@ int	ft_filein(char *file)
 		return (fd);
 }
 
-int	fork_pipe(t_node *data, char **envp)
+int	__open_infile(char *file)
+{
+	int	fd;
+
+	fd = ft_filein(file);
+	if (fd == -1)
+		return (-1);
+	dup2(fd, STDIN_FILENO);
+	close(fd);
+	return (1);
+}
+
+int	fork_pipe(t_node *data, char **envp, int i, char **av)
 {
 	if (pipe(data->fd) == -1)
 		return (-1);
@@ -43,17 +55,19 @@ int	fork_pipe(t_node *data, char **envp)
 		return (-1);
 	if (data->pid == 0)
 	{
-		close(data->fd[0]);
-		dup2(data->fd[1], STDOUT_FILENO);
-		if (data->prev)
-			close(data->prev->fd[1]);
+		if (data->index == 0)
+		{
+			if (__open_infile(av[i]) == -1)
+				exit(EXIT_FAILURE);
+			close(data->fd[1]);
+			dup2(data->fd[0], STDIN_FILENO);
+		}
+		else if (data->index != 0)
+		{
+			close(data->fd[0]);
+			dup2(data->fd[1], STDOUT_FILENO);
+		}
 		ft_execute(data->cmd_args, envp);
-	}
-	else
-	{
-		close(data->fd[1]);
-		dup2(data->fd[0], STDIN_FILENO);
-		close(data->fd[0]);
 	}
 	return (data->pid);
 }

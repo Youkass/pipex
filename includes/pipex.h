@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:34:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/23 17:39:37 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/25 18:48:54 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ void	ft_print_tab(char **tab);
 void	ft_error(int in, int out);
 void	__close(void);
 void	ft_parse(char **av, char **envp, int ac, t_node **start);
+int	__open_infile(char *file);
 /*================================================*/
 /* Functions using pipe()			   			  */
 /*file : utils_pipe.c		 					  */
-int		fork_pipe(t_node *data, char **envp);
+int		fork_pipe(t_node *data, char **envp, int i, char **av);
 int		ft_filein(char *file);
 int		ft_fileout(char *file);
 

@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:36:20 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/24 12:56:16 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/02/25 18:48:55 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_print_tab(char **tab)
 	while (tab[i])
 		printf("%s\n", tab[i++]);
 }
-
+/*
 static int	ft_check_file(int filein, int fileout)
 {
 	if (filein == -1 || fileout == -1)
@@ -30,7 +30,7 @@ static int	ft_check_file(int filein, int fileout)
 	else
 		return (1);
 }
-
+*/
 void	ft_error(int in, int out)
 {
 	close(in);
@@ -73,7 +73,7 @@ void	__close(void)
 
 int	main(int ac, char **av, char **envp)
 {
-	int	filein;
+//	int	filein;
 	int	fileout;
 	int	i;
 	t_node	*start;
@@ -84,25 +84,27 @@ int	main(int ac, char **av, char **envp)
 		return (0);
 	if (!ft_check_cmd(av, envp, 2, ac))
 		__close();
-	filein = ft_filein(av[1]);
 	fileout = ft_fileout(av[ac - 1]);
-	if (!ft_check_file(filein, fileout))
+	if (fileout == -1)
 		exit(EXIT_FAILURE);
 	ft_parse(av, envp, ac, &start);
 	if (!start)
-		ft_error(filein, fileout);
-	dup2(filein, STDIN_FILENO);
-	close(filein);
-	dup2(fileout, STDOUT_FILENO);
-	close(fileout);
+		__close();
 	i = 2;
 	tmp = start;
+	dup2(fileout, STDOUT_FILENO);
+	close(fileout);
 	while (i < ac - 2)
 	{
-		if (fork_pipe(tmp, envp) == -1)
-			ft_error(filein, fileout);
+		tmp->pid = fork_pipe(tmp, envp, 1, av);
+		if (tmp->pid == -1)
+		{
+			__close();
+			exit(EXIT_FAILURE);
+		}
 		i++;
 		tmp = tmp->next;
 	}
+	//waitpid(tmp->prev->pid, NULL, 0);
 	ft_execute(tmp->cmd_args, envp);
 }
