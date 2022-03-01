@@ -1,14 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_parse.c                                      :+:      :+:    :+:   */
+/*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/23 16:33:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/01 17:14:45 by yobougre         ###   ########.fr       */
+/*   Created: 2022/03/01 14:37:43 by yobougre          #+#    #+#             */
+/*   Updated: 2022/03/01 14:38:24 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#ifndef INCLUDES_H
+# define INCLUDES_H
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <fcntl.h>
 
+#endif

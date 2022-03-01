@@ -6,68 +6,37 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/25 18:48:53 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:49:30 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	ft_fileout(char *file)
+void	ft_close_all(t_node *params)
 {
-	int	fd;
+	int	i;
 
-	fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (fd == -1)
-		return (-1);
-	else
-		return (fd);
+	i = 0;
+	while (i < (params->nb - 1) * 2)
+		close(params->fd[i++]);
 }
 
-int	ft_filein(char *file)
+int	ft_fork(t_node *params, char **envp, char *av)
 {
-	int	fd;
 
-	fd = open(file, O_RDONLY, 0777);
-	if (fd == -1)
-		return (-1);
-	else
-		return (fd);
-}
-
-int	__open_infile(char *file)
-{
-	int	fd;
-
-	fd = ft_filein(file);
-	if (fd == -1)
-		return (-1);
-	dup2(fd, STDIN_FILENO);
-	close(fd);
-	return (1);
-}
-
-int	fork_pipe(t_node *data, char **envp, int i, char **av)
-{
-	if (pipe(data->fd) == -1)
-		return (-1);
-	data->pid = fork();
-	if (data->pid < 0)
-		return (-1);
-	if (data->pid == 0)
+	params->child = fork();
+	if (params->child == 0)
 	{
-		if (data->index == 0)
-		{
-			if (__open_infile(av[i]) == -1)
-				exit(EXIT_FAILURE);
-			close(data->fd[1]);
-			dup2(data->fd[0], STDIN_FILENO);
-		}
-		else if (data->index != 0)
-		{
-			close(data->fd[0]);
-			dup2(data->fd[1], STDOUT_FILENO);
-		}
-		ft_execute(data->cmd_args, envp);
+		if (params->index == 0)
+			ft_dup2(params->infile, params->fd[1]);
+		else if (params->index == params->nb - 1)
+			ft_dup2(params->fd[2 * params->index - 2], params->outfile);
+		else
+			ft_dup2(params->fd[2 * params->index - 2],
+			params->fd[2 * params->index - 1]);
+		ft_close_all(params);
+		if (ft_execute(ft_split(av, ' '), envp) < 0)
+			return (-1);
 	}
-	return (data->pid);
+	return (1);
 }
