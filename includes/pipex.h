@@ -6,7 +6,7 @@
 /*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/01 17:49:34 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/03 03:06:12 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ char	*check_path(char **path_lst, char *cmd);
 /* -------------------------------------------------------------------------- */
 /*                            FILE = srcs/pipex.c                             */
 /* -------------------------------------------------------------------------- */
-void	ft_print_tab(char **tab);
 void	ft_error(int in, int out);
 void	ft_close(void);
 void	ft_free_struct(t_node *params);

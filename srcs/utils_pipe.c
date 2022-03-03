@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/01 17:49:30 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/03 02:21:35 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	ft_close_all(t_node *params)
 
 int	ft_fork(t_node *params, char **envp, char *av)
 {
-
-	params->child = fork();
-	if (params->child == 0)
+	params->pid[params->index] = fork();
+	if (params->pid[params->index] == 0)
 	{
 		if (params->index == 0)
 			ft_dup2(params->infile, params->fd[1]);
@@ -33,7 +32,7 @@ int	ft_fork(t_node *params, char **envp, char *av)
 			ft_dup2(params->fd[2 * params->index - 2], params->outfile);
 		else
 			ft_dup2(params->fd[2 * params->index - 2],
-			params->fd[2 * params->index - 1]);
+			params->fd[2 * params->index + 1]);
 		ft_close_all(params);
 		if (ft_execute(ft_split(av, ' '), envp) < 0)
 			return (-1);

@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:13:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/23 14:01:52 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/03 03:07:06 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	get_path_pos(char **envp)
 	while (envp[i])
 	{
 		if (ft_cmp_path("PATH", envp[i]) == 0)
-			break ;
+			return (i);
 		++i;
 	}
-	return (i);
+	return (-1);
 }
 
 char	**get_path_lst(char **envp)
