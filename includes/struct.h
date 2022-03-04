@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:40:36 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/03 00:05:20 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:36:55 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 typedef struct	s_node
 {
 	int				infile;
+	char			*infile_name;
+	char			*outfile_name;
 	int				outfile;
 	pid_t			*pid;
 	int				nb;
 	int				*fd;
-	char		 	*path;
+	char		 	**cmd;
 	char			**cmd_args;
 	int				index;
 } t_node;

@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/23 14:01:22 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/04 18:33:42 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_free(char **tab)
 	int	i;
 
 	i = 0;
+	if (!tab )
+		return ;
 	while (tab[i])
 		free(tab[i++]);
 	free(tab);

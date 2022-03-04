@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:37:43 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/01 14:38:24 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/04 18:54:29 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# define COMMAND_NOT_FOUND "zsh: command not found: "
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/03 02:01:38 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/04 18:54:30 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ int	ft_init_pipe(t_node *params)
 int	ft_open(t_node *params, char *infile, char *outfile)
 {
 	params->infile = open(infile, O_RDONLY, 0777);
-	if (params->infile == -1)
-		return (-1);
-	params->outfile = open(outfile, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	params->infile_name = ft_strdup(infile);
+	params->outfile = open(outfile, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (params->outfile == -1)
+		return (-1);
+	params->outfile_name = ft_strdup(outfile);
+	if (!params->infile_name || !params->outfile_name)
 		return (-1);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/03 03:06:12 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/04 18:54:29 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,15 @@ char	*check_path(char **path_lst, char *cmd);
 void	ft_error(int in, int out);
 void	ft_close(void);
 void	ft_free_struct(t_node *params);
+int		ft_fill_cmd_name(t_node *params, char **av, int ac);
 
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/utils_pipe.c                          */
 /* -------------------------------------------------------------------------- */
 void	ft_close_all(t_node *params);
 int		ft_fork(t_node *params, char **envp, char *av);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_command_nt_found(char *cmd);
 
 /* -------------------------------------------------------------------------- */
 /*                           FILE = srcs/ft_free.c                            */
