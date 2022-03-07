@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:34:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/07 14:47:48 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/07 21:58:48 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_strdup(char *s)
 	return (output);
 }
 
-static char	*ft_strdup_pimp(char *s)
+char	*ft_strdup_pimp(char *s)
 {
 	char	*output;
 	size_t	i;

@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/07 16:48:53 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/07 20:54:13 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_dup2(int in, int out)
 int	ft_cmp_heredoc(char *av, char *heredoc)
 {
 	if (ft_strcmp(av, heredoc))
-		return (1);
+		return (0);
 	else
-		return (2);
+		return (1);
 }

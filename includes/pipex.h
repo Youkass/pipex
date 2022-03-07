@@ -6,7 +6,7 @@
 /*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/07 16:48:54 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/07 21:58:49 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	**ft_split(char const *s, char c);
 /* -------------------------------------------------------------------------- */
 int		ft_execute(char **av, char **envp);
 int		ft_init_pipe(t_node *params);
+int		ft_open(t_node *params, char *infile, char *outfile, int flag);
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/utils_str.c                           */
 /* -------------------------------------------------------------------------- */
@@ -38,6 +39,7 @@ int		ft_strlen(char *s);
 char	*ft_strdup(char *s);
 char	*ft_strjoin_pimp(char *s1, char *s2);
 int		ft_strchr_pimp(char *s, char c);
+char	*ft_strdup_pimp(char *s);
 
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/utils_path.c                          */
@@ -54,6 +56,7 @@ char	*check_path(char **path_lst, char *cmd);
 void	ft_error(int in, int out);
 void	ft_free_struct(t_node *params);
 int		ft_fill_cmd_name(t_node *params, char **av, int ac);
+int		ft_child_exec(t_node *params, char **av, char **envp);
 
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/utils_pipe.c                          */
@@ -61,6 +64,7 @@ int		ft_fill_cmd_name(t_node *params, char **av, int ac);
 void	ft_close_all(t_node *params);
 int		ft_fork(t_node *params, char **envp, char *av);
 void	ft_dup2(int in, int out);
+int		ft_cmp_heredoc(char *av, char *heredoc);
 
 /* -------------------------------------------------------------------------- */
 /*                           FILE = srcs/ft_free.c                            */

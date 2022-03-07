@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:36:20 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/07 16:48:56 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/07 21:58:46 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_fill_cmd_name(t_node *params, char **av, int ac)
 	params->cmd = malloc(sizeof(char *) * ((ac - 3) + 1));
 	if (!params->cmd)
 		return (-1);
-	while (i < ac - 3)
+	while (i < ac - 3 - params->heredoc)
 	{
 		tmp = ft_split(av[j], ' ');
 		if (!tmp)
@@ -59,6 +59,28 @@ int	ft_fill_cmd_name(t_node *params, char **av, int ac)
 	return (1);
 }
 
+int	ft_child_exec(t_node *params, char **av, char **envp)
+{
+	int	i;
+
+	i = 2;
+	params->index = 0;
+	if (ft_cmp_heredoc(av[1], "here_doc"))
+		i = 3;
+	while (params->index < params->nb)
+	{
+		if (ft_fork(params, envp, av[i]) < 0)
+		{
+			ft_close();
+			ft_free_struct(params);
+			return (-1);
+		}
+		params->index++;
+		i++;
+	}
+	return (1);
+}
+
 int	main(int ac, char **av, char **envp)
 {
 	int		i;
@@ -67,26 +89,17 @@ int	main(int ac, char **av, char **envp)
 
 	if (ac < 5 || get_path_pos(envp) < 0)
 		return (ft_close(), 0);
-	params.nb = ac - 3;
+	params.heredoc = ft_cmp_heredoc(av[1], "here_doc");
+	i = params.heredoc;
+	params.nb = ac - 3 - params.heredoc;
 	if (ft_init_pid(&params) < 0)
 		exit(EXIT_FAILURE);
-	i = 2;
 	if (ft_fill_cmd_name(&params, av, ac) < 0)
 		exit(EXIT_FAILURE);
-	if (ft_init_pipe(&params) < 0 || ft_open(&params, av[1], av[ac - 1]) < 0)
+	if (ft_init_pipe(&params) < 0 || ft_open(&params, av[1], av[ac - 1], i) < 0)
 		exit(EXIT_FAILURE);
-	params.index = 0;
-	while (params.index < params.nb)
-	{
-		if (ft_fork(&params, envp, av[i]) < 0)
-		{
-			ft_close();
-			ft_free_struct(&params);
-			exit(EXIT_FAILURE);
-		}
-		params.index++;
-		i++;
-	}
+	if (ft_child_exec(&params, av, envp) < 0)
+		exit(EXIT_FAILURE);
 	i = 0;
 	ft_close_all(&params);
 	while (i < params.nb)
