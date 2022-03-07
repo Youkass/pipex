@@ -6,7 +6,7 @@
 #    By: yobougre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 13:32:09 by yobougre          #+#    #+#              #
-#    Updated: 2022/03/04 18:23:16 by yobougre         ###   ########.fr        #
+#    Updated: 2022/03/07 14:50:02 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ SRCS=	srcs/pipex.c\
 		srcs/ft_split_path.c\
 		srcs/ft_split.c\
 		srcs/utils_pipe.c\
-		srcs/utils_exec.c
+		srcs/utils_exec.c\
+		srcs/error.c\
+		srcs/gnl.c
 
 INCL=	includes/pipex.h\
 		includes/includes.h\
@@ -25,7 +27,7 @@ INCL=	includes/pipex.h\
 
 NAME=	pipex
 
-CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS= -Wall -Werror -Wextra -g3
 
 CC=	gcc
 

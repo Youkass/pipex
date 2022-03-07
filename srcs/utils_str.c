@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:34:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/02/22 14:20:59 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/07 14:47:48 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,20 @@ char	*ft_strjoin_pimp(char *s1, char *s2)
 	}
 	output[i + j] = 0;
 	return (output);
+}
+
+int	ft_strchr_pimp(char *s, char c)
+{
+	size_t	i;
+
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (1);
+		++i;
+	}
+	return (0);
 }

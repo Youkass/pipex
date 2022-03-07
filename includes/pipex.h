@@ -6,7 +6,7 @@
 /*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/04 18:54:29 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/07 16:48:54 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,14 @@ char	**ft_split(char const *s, char c);
 /*                          FILE = srcs/utils_exec.c                          */
 /* -------------------------------------------------------------------------- */
 int		ft_execute(char **av, char **envp);
-void	ft_dup2(int in, int out);
 int		ft_init_pipe(t_node *params);
-int		ft_open(t_node *params, char *infile, char *outfile);
-
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/utils_str.c                           */
 /* -------------------------------------------------------------------------- */
 int		ft_strlen(char *s);
 char	*ft_strdup(char *s);
 char	*ft_strjoin_pimp(char *s1, char *s2);
+int		ft_strchr_pimp(char *s, char c);
 
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/utils_path.c                          */
@@ -54,7 +52,6 @@ char	*check_path(char **path_lst, char *cmd);
 /*                            FILE = srcs/pipex.c                             */
 /* -------------------------------------------------------------------------- */
 void	ft_error(int in, int out);
-void	ft_close(void);
 void	ft_free_struct(t_node *params);
 int		ft_fill_cmd_name(t_node *params, char **av, int ac);
 
@@ -63,8 +60,7 @@ int		ft_fill_cmd_name(t_node *params, char **av, int ac);
 /* -------------------------------------------------------------------------- */
 void	ft_close_all(t_node *params);
 int		ft_fork(t_node *params, char **envp, char *av);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_command_nt_found(char *cmd);
+void	ft_dup2(int in, int out);
 
 /* -------------------------------------------------------------------------- */
 /*                           FILE = srcs/ft_free.c                            */
@@ -72,5 +68,18 @@ void	ft_command_nt_found(char *cmd);
 int		ft_tab_size(char **tab);
 void	ft_free(char **tab);
 
+/* -------------------------------------------------------------------------- */
+/*                           FILE = srcs/error.c                              */
+/* -------------------------------------------------------------------------- */
+void	ft_putstr_fd(char *s, int fd);
+void	ft_command_nt_found(char *cmd);
+int		ft_strcmp(char *s1, char *s2);
+void	ft_close(void);
+
+/* -------------------------------------------------------------------------- */
+/*                           FILE = srcs/gnl.c                                */
+/* -------------------------------------------------------------------------- */
+char	*ft_next_line(char *line);
+char	*get_next_line(int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/04 18:54:28 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/07 16:48:53 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,6 @@ void	ft_close_all(t_node *params)
 	i = 0;
 	while (i < (params->nb - 1) * 2)
 		close(params->fd[i++]);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	write(fd, s, ft_strlen(s));
-}
-
-void	ft_command_nt_found(char *cmd)
-{
-	ft_putstr_fd(COMMAND_NOT_FOUND, 2);
-	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd("\n", 2);
 }
 
 int	ft_fork(t_node *params, char **envp, char *av)
@@ -54,4 +42,18 @@ int	ft_fork(t_node *params, char **envp, char *av)
 			return (ft_command_nt_found(params->cmd[params->index]), -1);
 	}
 	return (1);
+}
+
+void	ft_dup2(int in, int out)
+{
+	dup2(in, 0);
+	dup2(out, 1);
+}
+
+int	ft_cmp_heredoc(char *av, char *heredoc)
+{
+	if (ft_strcmp(av, heredoc))
+		return (1);
+	else
+		return (2);
 }

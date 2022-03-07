@@ -6,18 +6,11 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:36:20 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/04 18:54:30 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/07 16:48:56 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-
-void	ft_close(void)
-{
-	close(1);
-	close(2);
-	close(0);
-}
 
 int	ft_init_pid(t_node *params)
 {
@@ -80,7 +73,6 @@ int	main(int ac, char **av, char **envp)
 	i = 2;
 	if (ft_fill_cmd_name(&params, av, ac) < 0)
 		exit(EXIT_FAILURE);
-	/*ADD HERE_DOC CONDITION*/
 	if (ft_init_pipe(&params) < 0 || ft_open(&params, av[1], av[ac - 1]) < 0)
 		exit(EXIT_FAILURE);
 	params.index = 0;
