@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/07 20:54:13 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/08 14:23:00 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,13 @@ void	ft_dup2(int in, int out)
 	dup2(out, 1);
 }
 
-int	ft_cmp_heredoc(char *av, char *heredoc)
+int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params)
 {
-	if (ft_strcmp(av, heredoc))
+	if (ft_strcmp(av[1], heredoc))
 		return (0);
 	else
+	{
+		params->limiter = ft_strdup(av[2]);
 		return (1);
+	}
 }

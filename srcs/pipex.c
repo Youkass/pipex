@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:36:20 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/07 21:58:46 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:55:14 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ void	ft_free_struct(t_node *params)
 	free(params->infile_name);
 	free(params->outfile_name);
 	ft_free(params->cmd);
+	if (params->heredoc)
+	{
+		unlink(params->heredoc_name);
+		free(params->heredoc_name);
+		free(params->limiter);
+	}
 }
 
 int	ft_fill_cmd_name(t_node *params, char **av, int ac)
@@ -40,7 +46,9 @@ int	ft_fill_cmd_name(t_node *params, char **av, int ac)
 
 	i = 0;
 	j = 2;
-	params->cmd = malloc(sizeof(char *) * ((ac - 3) + 1));
+	if (params->heredoc)
+		j = 3;
+	params->cmd = malloc(sizeof(char *) * ((ac - 3 - params->heredoc) + 1));
 	if (!params->cmd)
 		return (-1);
 	while (i < ac - 3 - params->heredoc)
@@ -65,7 +73,7 @@ int	ft_child_exec(t_node *params, char **av, char **envp)
 
 	i = 2;
 	params->index = 0;
-	if (ft_cmp_heredoc(av[1], "here_doc"))
+	if (params->heredoc)
 		i = 3;
 	while (params->index < params->nb)
 	{
@@ -89,7 +97,7 @@ int	main(int ac, char **av, char **envp)
 
 	if (ac < 5 || get_path_pos(envp) < 0)
 		return (ft_close(), 0);
-	params.heredoc = ft_cmp_heredoc(av[1], "here_doc");
+	params.heredoc = ft_cmp_heredoc(av, "here_doc", &params);
 	i = params.heredoc;
 	params.nb = ac - 3 - params.heredoc;
 	if (ft_init_pid(&params) < 0)

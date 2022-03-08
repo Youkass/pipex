@@ -6,7 +6,7 @@
 /*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/07 21:58:49 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:55:15 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	**ft_split(char const *s, char c);
 int		ft_execute(char **av, char **envp);
 int		ft_init_pipe(t_node *params);
 int		ft_open(t_node *params, char *infile, char *outfile, int flag);
+int		ft_heredoc(t_node *params);
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/utils_str.c                           */
 /* -------------------------------------------------------------------------- */
@@ -64,7 +65,7 @@ int		ft_child_exec(t_node *params, char **av, char **envp);
 void	ft_close_all(t_node *params);
 int		ft_fork(t_node *params, char **envp, char *av);
 void	ft_dup2(int in, int out);
-int		ft_cmp_heredoc(char *av, char *heredoc);
+int		ft_cmp_heredoc(char **av, char *heredoc, t_node *params);
 
 /* -------------------------------------------------------------------------- */
 /*                           FILE = srcs/ft_free.c                            */
@@ -79,6 +80,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_command_nt_found(char *cmd);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_close(void);
+void	ft_heredoc_infile(t_node *params);
 
 /* -------------------------------------------------------------------------- */
 /*                           FILE = srcs/gnl.c                                */

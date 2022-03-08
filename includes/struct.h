@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:40:36 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/07 16:48:53 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:55:15 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct	s_node
 	char			**cmd_args;
 	int				index;
 	int				heredoc;
+	char			*limiter;
+	char			*heredoc_name;
 } t_node;
 
 #endif
