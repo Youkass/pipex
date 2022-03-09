@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/08 14:23:00 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/09 18:18:50 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_fork(t_node *params, char **envp, char *av)
 			params->fd[2 * params->index + 1]);
 		ft_close_all(params);
 		if (ft_execute(ft_split(av, ' '), envp) < 0)
-			return (ft_command_nt_found(params->cmd[params->index]), -1);
+			return (perror(params->cmd[params->index]), -1);
 	}
 	return (1);
 }

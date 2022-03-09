@@ -6,7 +6,7 @@
 #    By: yobougre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 13:32:09 by yobougre          #+#    #+#              #
-#    Updated: 2022/03/08 13:51:40 by yobougre         ###   ########.fr        #
+#    Updated: 2022/03/09 20:44:21 by yobougre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS=	srcs/pipex.c\
 		srcs/utils_pipe.c\
 		srcs/utils_exec.c\
 		srcs/error.c\
-		srcs/gnl.c
+		srcs/gnl.c\
+		srcs/join.c
 
 INCL=	includes/pipex.h\
 		includes/includes.h\
@@ -27,7 +28,7 @@ INCL=	includes/pipex.h\
 
 NAME=	pipex
 
-CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS= -Wall -Werror -Wextra -g3
 
 CC=	gcc
 
@@ -47,7 +48,3 @@ fclean:
 re:	fclean all
 
 .PHONY: fclean clean re all 
-
-#--track -fds=is
-#--trace -children=is
-#-q

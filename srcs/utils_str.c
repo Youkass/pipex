@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:34:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/07 21:58:48 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/09 18:12:20 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strlen(char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (-1);
 	while(s[i])
 		++i;
 	return (i);
@@ -27,6 +29,8 @@ char	*ft_strdup(char *s)
 	char	*output;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	output = malloc(sizeof(char) * ft_strlen(s) + 1);
 	if (!output)
 		return (NULL);
@@ -55,12 +59,14 @@ char	*ft_strdup_pimp(char *s)
 	{
 		output[i] = s[i];
 		++i;
+		if (output[i - 1] == '\n')
+			break ;
 	}
 	output[i] = 0;
 	return (output);
 }
 
-char	*ft_strjoin_pimp(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*output;
 	size_t	i;

@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/08 20:17:24 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:44:22 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,18 @@ int	ft_heredoc(t_node *params)
 		return (perror(".heredoc_temp"), -1);
 	while (1)
 	{
-		ft_putstr_fd("heredoc>", 0);
+		ft_putstr_fd("heredoc> ", 0);
 		line = get_next_line(0);
 		if (!ft_strcmp(line, params->limiter))
 			break ;
 		ft_putstr_fd(line, fd);
 		free(line);
 	}
-	ft_heredoc_infile(params);
 	close(fd);
+	ft_heredoc_infile(params);
+	free(params->limiter);
 	free(line);
 	if (params->infile < 0)
-	{
-		unlink(".heredoc_temp");
-		perror(".heredoc_temp");
-		return (-1);
-	}
+		return (unlink(".heredoc_temp"), perror(".heredoc_temp"), -1);
 	return (1);
 }

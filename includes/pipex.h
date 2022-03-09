@@ -6,7 +6,7 @@
 /*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/08 16:55:15 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:44:21 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*ft_strdup(char *s);
 char	*ft_strjoin_pimp(char *s1, char *s2);
 int		ft_strchr_pimp(char *s, char c);
 char	*ft_strdup_pimp(char *s);
+char	*ft_strjoin(char *s1, char *s2);
 
 /* -------------------------------------------------------------------------- */
 /*                          FILE = srcs/utils_path.c                          */
@@ -55,7 +56,7 @@ char	*check_path(char **path_lst, char *cmd);
 /*                            FILE = srcs/pipex.c                             */
 /* -------------------------------------------------------------------------- */
 void	ft_error(int in, int out);
-void	ft_free_struct(t_node *params);
+int		ft_init_pid(t_node *params);
 int		ft_fill_cmd_name(t_node *params, char **av, int ac);
 int		ft_child_exec(t_node *params, char **av, char **envp);
 
@@ -72,6 +73,7 @@ int		ft_cmp_heredoc(char **av, char *heredoc, t_node *params);
 /* -------------------------------------------------------------------------- */
 int		ft_tab_size(char **tab);
 void	ft_free(char **tab);
+void	ft_free_struct(t_node *params);
 
 /* -------------------------------------------------------------------------- */
 /*                           FILE = srcs/error.c                              */
@@ -87,5 +89,10 @@ void	ft_heredoc_infile(t_node *params);
 /* -------------------------------------------------------------------------- */
 char	*ft_next_line(char *line);
 char	*get_next_line(int fd);
+
+/* -------------------------------------------------------------------------- */
+/*                           FILE = srcs/gnl.c                                */
+/* -------------------------------------------------------------------------- */
+int		ft_initialisation(t_node *params, char **av, int ac, int i);
 
 #endif

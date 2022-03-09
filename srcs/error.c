@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:33:01 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/08 16:55:14 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/09 17:55:10 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	ft_strcmp(char *s1, char *s2)
 	int	i;
 
 	i = 0;
+	if (!s1 || !s2)
+		return (-1);
 	while (s1[i] == s2[i] && s2[i] && s2[i])
 	{
 		if (s1[i + 1] == '\n')
@@ -48,5 +50,5 @@ void	ft_close(void)
 void	ft_heredoc_infile(t_node *params)
 {
 	params->infile = open(".heredoc_temp", O_RDONLY, 0644);
-	params->heredoc_name = ft_strdup(".heredoc_temp");
+	params->infile_name = ft_strdup(".heredoc_temp");
 }
