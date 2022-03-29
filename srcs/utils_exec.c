@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:26:10 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/09 20:44:22 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/10 14:26:57 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,11 @@ int	ft_heredoc(t_node *params)
 		return (perror(".heredoc_temp"), -1);
 	while (1)
 	{
-		ft_putstr_fd("heredoc> ", 0);
+		ft_putstr_fd("heredoc> ", 1);
 		line = get_next_line(0);
-		if (!ft_strcmp(line, params->limiter))
+		if (!line)
+			ft_putstr_fd("\n", 1);
+		if (!ft_strcmp(line, params->limiter) || !line)
 			break ;
 		ft_putstr_fd(line, fd);
 		free(line);
@@ -79,7 +81,8 @@ int	ft_heredoc(t_node *params)
 	close(fd);
 	ft_heredoc_infile(params);
 	free(params->limiter);
-	free(line);
+	if (line)
+		free(line);
 	if (params->infile < 0)
 		return (unlink(".heredoc_temp"), perror(".heredoc_temp"), -1);
 	return (1);

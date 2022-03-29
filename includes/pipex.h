@@ -6,7 +6,7 @@
 /*   By: yobougre <yobougre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 12:52:24 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/09 20:44:21 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:55:02 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int		ft_child_exec(t_node *params, char **av, char **envp);
 void	ft_close_all(t_node *params);
 int		ft_fork(t_node *params, char **envp, char *av);
 void	ft_dup2(int in, int out);
-int		ft_cmp_heredoc(char **av, char *heredoc, t_node *params);
+int		ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac);
+void	ft_wrong_args(void);
 
 /* -------------------------------------------------------------------------- */
 /*                           FILE = srcs/ft_free.c                            */
@@ -91,8 +92,18 @@ char	*ft_next_line(char *line);
 char	*get_next_line(int fd);
 
 /* -------------------------------------------------------------------------- */
-/*                           FILE = srcs/gnl.c                                */
+/*                           FILE = srcs/join.c                               */
 /* -------------------------------------------------------------------------- */
 int		ft_initialisation(t_node *params, char **av, int ac, int i);
+int		ft_args(int ac, char **av);
+int		ft_chk_cmd(char *cmd);
+
+/* -------------------------------------------------------------------------- */
+/*                           FILE = srcs/utils_both.c                         */
+/* -------------------------------------------------------------------------- */
+int		ft_init_pid(t_node *params);
+int		ft_norme(t_node *params, char **av, int ac, int j);
+int		ft_fill_cmd_name(t_node *params, char **av, int ac);
+int		ft_child_exec(t_node *params, char **av, char **envp);
 
 #endif

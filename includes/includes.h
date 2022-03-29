@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:37:43 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/07 14:53:36 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:25:22 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <fcntl.h>
-# define COMMAND_NOT_FOUND "zsh: command not found: "
+# define COMMAND_NOT_FOUND ": command not found\n"
 # define BUFFER_SIZE 1
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:34:51 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/09 18:12:20 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/10 12:56:14 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_strlen(char *s)
 	i = 0;
 	if (!s)
 		return (-1);
-	while(s[i])
+	while (s[i])
 		++i;
 	return (i);
 }

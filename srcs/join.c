@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:01:25 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/09 20:44:20 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:22:12 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,10 @@ char	*ft_strjoin_pimp(char *s1, char *s2)
 
 int	ft_initialisation(t_node *params, char **av, int ac, int i)
 {
-	int	j;
-
-	i = 1;
-	while (j < ac - 1)
-	{
-		if (!av[j])
-		{
-			if (params->heredoc)
-				free(params->limiter);
-			ft_putstr_fd("Arguments error\n", 2);
-			exit(EXIT_FAILURE);
-		}
-		++j;
-	}
+	params->infile_name = NULL;
+	params->outfile_name = NULL;
+	params->cmd = NULL;
+	params->cmd_args = NULL;
 	if (ft_init_pid(params) < 0)
 		return (-1);
 	if (ft_fill_cmd_name(params, av, ac) < 0)
@@ -64,4 +54,31 @@ int	ft_initialisation(t_node *params, char **av, int ac, int i)
 	if (ft_init_pipe(params) < 0 || ft_open(params, av[1], av[ac - 1], i) < 0)
 		return (-1);
 	return (1);
+}
+
+int	ft_args(int ac, char **av)
+{
+	int	i;
+
+	i = 1;
+	while (i < ac - 1)
+	{
+		if (ft_strlen(av[i]) < 1)
+			return (-1);
+		++i;
+	}
+	return (0);
+}
+
+int	ft_chk_cmd(char *cmd)
+{
+	if (*cmd == '/' || *cmd == '.')
+	{
+		if (access(cmd, 0) != 0)
+			return (-1);
+		else
+			return (0);
+	}
+	else
+		return (0);
 }

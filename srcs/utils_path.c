@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:13:00 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/09 15:03:49 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:55:31 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char	**get_path_lst(char **envp)
 {
 	char	**output;
 
+	if (get_path_pos(envp) < 0)
+		return (NULL);
 	output = ft_split_path(envp[get_path_pos(envp)] + 5, ':');
 	if (!output)
 		return (NULL);
@@ -61,16 +63,20 @@ char	*check_path(char **path_lst, char *cmd)
 	char	*output;
 
 	i = 0;
-	if (!path_lst)
-		return (free(cmd), NULL);
+	if (!path_lst || ft_chk_cmd(cmd) < 0)
+		return (ft_command_nt_found(cmd), NULL);
 	while (path_lst[i])
 	{
 		output = ft_strjoin(path_lst[i], cmd);
-		if (access(output, R_OK) == 0)
+		if (access(output, 0) == 0)
 			return (ft_free(path_lst), output);
 		free(output);
 		++i;
 	}
+	output = ft_strdup(cmd);
+	if (access(cmd, 0) == 0)
+		return (ft_free(path_lst), output);
+	free(output);
 	ft_free(path_lst);
 	return (ft_command_nt_found(cmd), NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 14:33:01 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/09 17:55:10 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:12:47 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	ft_command_nt_found(char *cmd)
 {
-	ft_putstr_fd(COMMAND_NOT_FOUND, 2);
 	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd("\n", 2);
+	ft_putstr_fd(COMMAND_NOT_FOUND, 2);
 }
 
 void	ft_putstr_fd(char *s, int fd)

@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 01:29:39 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/09 18:18:50 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:08:32 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int	ft_fork(t_node *params, char **envp, char *av)
 			ft_dup2(params->fd[2 * params->index - 2], params->outfile);
 		else
 			ft_dup2(params->fd[2 * params->index - 2],
-			params->fd[2 * params->index + 1]);
+				params->fd[2 * params->index + 1]);
 		ft_close_all(params);
 		if (ft_execute(ft_split(av, ' '), envp) < 0)
-			return (perror(params->cmd[params->index]), -1);
+			return (-1);
 	}
 	return (1);
 }
@@ -50,13 +50,25 @@ void	ft_dup2(int in, int out)
 	dup2(out, 1);
 }
 
-int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params)
+int	ft_cmp_heredoc(char **av, char *heredoc, t_node *params, int ac)
 {
 	if (ft_strcmp(av[1], heredoc))
+	{
+		params->nb = ac - 3;
+		params->limiter = NULL;
 		return (0);
+	}
 	else
 	{
+		params->nb = ac - 4;
 		params->limiter = ft_strdup(av[2]);
 		return (1);
 	}
+}
+
+void	ft_wrong_args(void)
+{
+	ft_putstr_fd("wrong arguments\n", 2);
+	ft_close();
+	exit(EXIT_FAILURE);
 }

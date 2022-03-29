@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:40:36 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/09 13:24:55 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/10 12:59:43 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define STRUCT_H
 # include "includes.h"
 
-typedef struct	s_node
+typedef struct s_node
 {
 	int				infile;
 	char			*infile_name;
@@ -23,11 +23,11 @@ typedef struct	s_node
 	pid_t			*pid;
 	int				nb;
 	int				*fd;
-	char		 	**cmd;
+	char			**cmd;
 	char			**cmd_args;
 	int				index;
 	int				heredoc;
 	char			*limiter;
-} t_node;
+}	t_node;
 
 #endif

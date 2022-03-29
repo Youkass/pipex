@@ -6,7 +6,7 @@
 /*   By: yobougre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:26:48 by yobougre          #+#    #+#             */
-/*   Updated: 2022/03/09 18:08:12 by yobougre         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:31:01 by yobougre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ void	ft_free_struct(t_node *params)
 	close(params->outfile);
 	free(params->fd);
 	free(params->pid);
-	free(params->infile_name);
-	free(params->outfile_name);
+	if (params->infile_name)
+		free(params->infile_name);
+	if (params->outfile_name)
+		free(params->outfile_name);
 	ft_free(params->cmd);
 }
 
 int	ft_tab_size(char **tab)
 {
 	int	i;
-	
+
 	i = 0;
 	while (tab[i])
 		++i;
@@ -39,7 +41,7 @@ void	ft_free(char **tab)
 	int	i;
 
 	i = 0;
-	if (!tab )
+	if (!tab)
 		return ;
 	while (tab[i])
 		free(tab[i++]);
